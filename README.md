@@ -1,8 +1,10 @@
 # Inventory Management - [@giaptai](https://www.github.com/giaptai)
 > A project built by Java language, help management your storage
 
+
 ## Knowledge Application
 > Java 8, Object-oriented programing (OOP)
+
 - Conditions
 - Loops
 - Collections
