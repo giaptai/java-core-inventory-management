@@ -1,5 +1,5 @@
 # Inventory Management - [@giaptai](https://www.github.com/giaptai)
-> A project built by Java language, help management your storage
+> A project built by Java language, help manages your storage
 
 
 ## Knowledge Application
