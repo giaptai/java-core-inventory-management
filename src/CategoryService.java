@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.EOFException;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,8 +15,10 @@ public class CategoryService implements ICategoryFile {
     File file;
     private final IWorkWithFile<Product> productService;
 
-    public CategoryService() {
-        this.productService = new ProductService();
+    public CategoryService(File file, IWorkWithFile<Product> productService) {
+//        this.file = file;
+        this.productService = productService;
+        //
         File dir = new File(pathCategory);
         if (!dir.exists()) {
             dir.mkdir();
@@ -31,6 +32,24 @@ public class CategoryService implements ICategoryFile {
             }
         }
         this.file = fileProduct;
+//        this.productService = new ProductService(file, this);
+    }
+
+    public CategoryService() {
+        File dir = new File(pathCategory);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        File fileProduct = new File("data/categories.txt");
+        if (!fileProduct.exists()) {
+            try {
+                fileProduct.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        this.file = fileProduct;
+        this.productService = new ProductService(file, this);
     }
 
     @Override
@@ -40,6 +59,9 @@ public class CategoryService implements ICategoryFile {
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(categories);
             System.out.println("Save in file successfully");
+            System.out.println("\u001B[32m"
+                    + Notification.ADD_TO_FILE_SUCCESS
+                    + "\u001B[0m");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -54,17 +76,28 @@ public class CategoryService implements ICategoryFile {
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
             categories = (List<Category>) inputStream.readObject();
         } catch (EOFException e) {
-//            System.err.println("het dong");
+            System.out.println("\u001B[33m"
+                    + Notification.ADD_TO_FILE_SUCCESS
+                    + "\u001B[0m");
         } catch (IOException e) {
             System.err.println("Loi khi doc file");
         } catch (ClassNotFoundException e) {
 //            throw new RuntimeException(e.getCause());
             e.printStackTrace();
         }
-//        return categories.stream().sorted(Comparator.comparingInt(Category::getId)).toList();
-//        return new ArrayList<>(categories);
+        //selection sort
+        for (int i = 0; i < categories.size() - 1; i++) {
+            int max = i; // auto select current index is max
+            Category tempCategory = categories.get(i); //  assign the temp Category
+            for (int j = i + 1; j < categories.size(); j++) {
+                if (categories.get(j).getId() > categories.get(max).getId()) {
+                    max = j;
+                }
+            }
+            categories.set(i, categories.get(max));
+            categories.set(max, tempCategory);
+        }
         return categories; // trả về immutable Collections ?????
-
     }
 
     @Override
@@ -143,7 +176,8 @@ public class CategoryService implements ICategoryFile {
                         high = mid - 1;
                     }
                 }
-            }else System.err.printf("%s","Id not found or there is products belong to category, need remove products first");
+            } else
+                System.err.printf("%s", "Id not found or there is products belong to category, need remove products first");
 
         } catch (NumberFormatException e) {
             System.err.println("Wrong Input number at deteleFile !!!");
@@ -178,14 +212,6 @@ public class CategoryService implements ICategoryFile {
                     category.getId(), category.getName(), category.getDescription(), category.getStatus() ? "HOẠT ĐỘNG" : "KHÔNG HOẠT ĐỘNG");
         }
         System.out.printf("+%10s+%30s+%30s+%15s+\n", "------------", "--------------------------------", "--------------------------------", "-----------------");
-
-//        System.out.printf("| %-4s | %-30s | %-12s | %-12s | %-12s |\n", "ID", "Name", "Import Price", "Export Price", "Profit");
-//        System.out.println("+------+--------------------------------+--------------+--------------+--------------+");
-//        for (Product product : products) {
-//            System.out.printf("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f |%n",
-//                    product.getId(), product.getName(), product.getImportPrice(), product.getExportPrice(), product.getProfit());
-//        }
-//        System.out.printf("+%4s+%30s+%12s+%12s+%12s+\n", "------", "--------------------------------", "--------------", "--------------", "--------------");
     }
 
     @Override
@@ -196,13 +222,12 @@ public class CategoryService implements ICategoryFile {
         for (int i = 0; i < categories.size(); i++) {
             final int currentIndex = i;
             countSP[i] = products.stream().filter(product -> product.getCategoryId() == categories.get(currentIndex).getId()).count();
-
         }
-        System.out.printf("| %-10s | %-30s | %-30s | %-15s | %-10s |\n", "ID", "Name", "Description", "Status", "Products");
+        System.out.printf("| %1$-10s | %2$-30s | %3$-30s | %4$-15s | %5$-10s |\n", "ID", "Name", "Description", "Status", "Products");
         System.out.println("+------------+--------------------------------+--------------------------------+-----------------+------------+");
         for (int i = 0; i < categories.size(); i++) {
-            System.out.printf("| %-10d | %-30s | %-30s | %-15s | %-10s |%n",
-                    categories.get(i).getId(), categories.get(i).getName(), categories.get(i).getDescription(), categories.get(i).getStatus() ? "HOẠT ĐỘNG" : "KHÔNG HOẠT ĐỘNG", countSP[i]);
+            System.out.format("| %-10d | %-30s | %-30s | %-24s | %-10s |%n",
+                    categories.get(i).getId(), categories.get(i).getName(), categories.get(i).getDescription(), categories.get(i).getStatus() ? Notification.HOAT_DONG.getS() : Notification.KHONG_HOAT_DONG.getS(), countSP[i]);
         }
         System.out.printf("+%10s+%30s+%30s+%15s+%10s+\n", "------------", "--------------------------------", "--------------------------------", "-----------------", "------------");
     }

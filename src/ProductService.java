@@ -8,19 +8,24 @@ import java.io.EOFException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ProductService implements IWorkWithFile<Product> {
     public static final String pathProduct = "data";
     private final File file;
-    private ICategoryFile category;
+    private final ICategoryFile category;
 
-    public ProductService() {
-//        this.category = new CategoryService();
-        File file = new File(pathProduct);
-        if (!file.exists()) {
-            file.mkdir();
+    public ProductService(File file, ICategoryFile category) {
+//        this.file = file;
+        this.category = category;
+        //
+        File dir = new File(pathProduct);
+        if (!dir.exists()) {
+            dir.mkdir();
         }
         File fileProduct = new File("data/products.txt");
         if (!fileProduct.exists()) {
@@ -31,6 +36,23 @@ public class ProductService implements IWorkWithFile<Product> {
             }
         }
         this.file = fileProduct;
+    }
+
+    public ProductService() {
+        File dir = new File(pathProduct);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        File fileProduct = new File("data/products.txt");
+        if (!fileProduct.exists()) {
+            try {
+                fileProduct.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        this.file = fileProduct;
+        this.category = new CategoryService(file, this);
     }
 
     // thêm vào file
@@ -54,14 +76,27 @@ public class ProductService implements IWorkWithFile<Product> {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
             products = (List<Product>) inputStream.readObject();
+            //insertion sort
+            for (int i = 1; i < products.size(); i++) {
+                int j = i;
+                Product currentProduct = products.get(i);
+                while (j > 0 && currentProduct.getId().compareTo(products.get(j - 1).getId()) > 0) {
+                    products.set(j, products.get(j - 1));
+                    j--;
+                }
+                products.set(j, currentProduct);
+            }
         } catch (EOFException e) {
-            System.err.println("het dong");
+            e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
             System.err.println("Loi khi doc file");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 //        products.sort((o1, o2) -> o2.getId().compareTo(o1.getId()));
+
+
         return products;
 //        return products;
     }
@@ -185,12 +220,26 @@ public class ProductService implements IWorkWithFile<Product> {
     }
 
     private void printAstable(List<Product> products) {
-        System.out.printf("| %-4s | %-30s | %-12s | %-12s | %-12s | %-8s |\n", "ID", "Name", "Import Price", "Export Price", "Profit", "Category");
-        System.out.println("+------+--------------------------------+--------------+--------------+--------------+----------+");
-        for (Product product : products) {
-            System.out.printf("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-8d |%n",
-                    product.getId(), product.getName(), product.getImportPrice(), product.getExportPrice(), product.getProfit(), product.getCategoryId());
+        List<Category> categories = category.readFile();
+        String[] categoryName = new String[products.size()];
+        Map<Integer, String> categoryIdToNameMap = new HashMap<>();
+        for (Category value : categories) {
+            categoryIdToNameMap.put(value.getId(), "\033[1;35m"+value.getName()+"\u001B[0m");
         }
-        System.out.printf("+%4s+%30s+%12s+%12s+%12s+%8s+\n", "------", "--------------------------------", "--------------", "--------------", "--------------", "----------");
+        for (int i = 0; i < products.size(); i++) {
+            int categoryId = products.get(i).getCategoryId();
+            categoryName[i] = categoryIdToNameMap.get(categoryId);
+        }
+        System.out.printf("| %-4s | %-30s | %-12s | %-12s | %-12s | %-15s |\n", "ID", "Name", "Import Price", "Export Price", "Profit", "Category");
+        System.out.println("+------+--------------------------------+--------------+--------------+--------------+-----------------+");
+//        for (Product product : products) {
+//            System.out.printf("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-8d |%n",
+//                    product.getId(), product.getName(), product.getImportPrice(), product.getExportPrice(), product.getProfit(), product.getCategoryId());
+//        }
+        for (int i = 0; i < products.size(); i++) {
+            System.out.printf("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-26s |%n",
+                    products.get(i).getId(), products.get(i).getName(), products.get(i).getImportPrice(), products.get(i).getExportPrice(), products.get(i).getProfit(), categoryName[i]);
+        }
+        System.out.printf("+%4s+%30s+%12s+%12s+%12s+%15s+\n", "------", "--------------------------------", "--------------", "--------------", "--------------", "-----------------");
     }
 }

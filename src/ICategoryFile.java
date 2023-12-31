@@ -20,4 +20,11 @@ public interface ICategoryFile extends IWorkWithFile<Category> {
 
     void statisticsProducts();
 
+    default void sfdf() {
+        System.out.println();
+    }
+
+    static void saff() {
+        System.out.println();
+    }
 }
