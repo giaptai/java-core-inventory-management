@@ -22,12 +22,9 @@
 
 ![Screenshot 2023-12-30 102440](https://github.com/giaptai/java-core-inventory-management/assets/102518847/0d728020-faea-43b9-9beb-b8e7c6adf269)
 
-![Screenshot 2023-12-30 102520](https://github.com/giaptai/java-core-inventory-management/assets/102518847/8f754360-3eb5-43e2-a588-9cb87de38193)
+![Screenshot 2023-12-30 102546](https://github.com/giaptai/java-core-inventory-management/assets/102518847/8017d6fc-1cbc-4a98-9c9b-3c73844a6f4c)
 
-![Screenshot 2023-12-30 102546](https://github.com/giaptai/java-core-inventory-management/assets/102518847/9b17f0e7-9a0d-4194-80c0-ef33c6f71753)
-
-![Screenshot 2023-12-30 102605](https://github.com/giaptai/java-core-inventory-management/assets/102518847/6dfa330f-72a5-4392-9bb1-2eea2e9b82fd)
-
+![Screenshot 2023-12-30 102605](https://github.com/giaptai/java-core-inventory-management/assets/102518847/66efe8ff-a3a7-4cd6-a42d-e57627ada09c)
 
 
 
