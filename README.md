@@ -7,13 +7,14 @@
 - Object-oriented programing (OOP): ***encapsulation, abstraction, interface, Inheritance***
 - Conditions: **if else, switch case**
 - Loops: **for, foreach, whille, do while**
-- Collections: **list, arrays**
+- Collections: **list, arrays, map-HashMap**
 - Working with Files: ***write**: FileOutputStream, ObjectInputStream, **read:** FileInputStream, ObjectInputStream*
 - Exception handling: **try catch, throw new**
 - Serialization: **immplements Serialization to read file beacause file is encode**
 - Generics: **at abstract class and interface**
 - Streams: **sort, filter**
-
+- ANSI: **printf out with the color text**
+- Enum class: **store constant variable**
 ## Screenshots
 ![Screenshot 2023-12-30 102344](https://github.com/giaptai/java-core-inventory-management/assets/102518847/1ad41949-bdd4-4ead-b6a4-3cd723f1dbee)
 
