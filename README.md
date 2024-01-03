@@ -24,7 +24,8 @@
 
 ![Screenshot 2023-12-30 102546](https://github.com/giaptai/java-core-inventory-management/assets/102518847/8017d6fc-1cbc-4a98-9c9b-3c73844a6f4c)
 
-![Screenshot 2023-12-30 102605](https://github.com/giaptai/java-core-inventory-management/assets/102518847/66efe8ff-a3a7-4cd6-a42d-e57627ada09c)
+![Screenshot 2023-12-30 102605](https://github.com/giaptai/java-core-inventory-management/assets/102518847/dfc0116d-0bc3-459e-b303-bbedd58d94a4)
+
 
 
 
