@@ -1,3 +1,5 @@
+package work_w_files.models;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -29,7 +31,8 @@ public class Category extends POJODefault<Integer, String, String, Boolean> impl
 //                    super.setId(id);
                     this.setId(id);
                     break;
-                } else throw new NumberFormatException("");
+                }else System.err.println("Phải là số nguyên lớn hơn 0, duy nhất");
+//                else throw new NumberFormatException("");
             } catch (NumberFormatException e) {
                 System.err.println("Phải là số nguyên lớn hơn 0, duy nhất");
             }

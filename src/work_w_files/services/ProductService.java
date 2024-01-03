@@ -1,3 +1,9 @@
+package work_w_files.services;
+
+import work_w_files.models.Category;
+import work_w_files.models.Product;
+import work_w_files.services.CategoryService;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.FileOutputStream;
@@ -6,13 +12,13 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.EOFException;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class ProductService implements IWorkWithFile<Product> {
     public static final String pathProduct = "data";
@@ -20,14 +26,13 @@ public class ProductService implements IWorkWithFile<Product> {
     private final ICategoryFile category;
 
     public ProductService(File file, ICategoryFile category) {
-//        this.file = file;
         this.category = category;
         //
         File dir = new File(pathProduct);
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File fileProduct = new File("data/products.txt");
+        File fileProduct = new File(dir,"products.txt");
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -43,7 +48,7 @@ public class ProductService implements IWorkWithFile<Product> {
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File fileProduct = new File("data/products.txt");
+        File fileProduct = new File("C:/Users/henta/IdeaProjects/rikei_BTL_002 - Copy/data/products.txt");
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -75,7 +80,8 @@ public class ProductService implements IWorkWithFile<Product> {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-            products = (List<Product>) inputStream.readObject();
+            products = ((List<Product>) inputStream.readObject());
+
             //insertion sort
             for (int i = 1; i < products.size(); i++) {
                 int j = i;
@@ -92,11 +98,10 @@ public class ProductService implements IWorkWithFile<Product> {
             e.printStackTrace();
             System.err.println("Loi khi doc file");
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 //        products.sort((o1, o2) -> o2.getId().compareTo(o1.getId()));
-
-
         return products;
 //        return products;
     }
@@ -114,6 +119,7 @@ public class ProductService implements IWorkWithFile<Product> {
                 printAstable(products);
                 Product product1 = new Product();
                 product1.inputData(products, categories);
+//                product1.setDateTime(LocalDateTime.now());
                 products.add(product1);
                 System.out.print("Bạn có muốn nhập thêm không? 1. Có 2. Không: ");
                 choice = Integer.parseInt(sc.nextLine());
@@ -226,20 +232,17 @@ public class ProductService implements IWorkWithFile<Product> {
         for (Category value : categories) {
             categoryIdToNameMap.put(value.getId(), "\033[1;35m"+value.getName()+"\u001B[0m");
         }
+        System.out.println("+------+--------------------------------+--------------+--------------+--------------+-----------------+---------------------------+");
         for (int i = 0; i < products.size(); i++) {
             int categoryId = products.get(i).getCategoryId();
             categoryName[i] = categoryIdToNameMap.get(categoryId);
         }
-        System.out.printf("| %-4s | %-30s | %-12s | %-12s | %-12s | %-15s |\n", "ID", "Name", "Import Price", "Export Price", "Profit", "Category");
-        System.out.println("+------+--------------------------------+--------------+--------------+--------------+-----------------+");
-//        for (Product product : products) {
-//            System.out.printf("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-8d |%n",
-//                    product.getId(), product.getName(), product.getImportPrice(), product.getExportPrice(), product.getProfit(), product.getCategoryId());
-//        }
+        System.out.printf("| %-4s | %-30s | %-12s | %-12s | %-12s | %-15s | %-25s |\n", "ID", "Name", "Import Price", "Export Price", "Profit", "Category", "Date Time Update");
+        System.out.println("+------+--------------------------------+--------------+--------------+--------------+-----------------+---------------------------+");
         for (int i = 0; i < products.size(); i++) {
-            System.out.printf("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-26s |%n",
-                    products.get(i).getId(), products.get(i).getName(), products.get(i).getImportPrice(), products.get(i).getExportPrice(), products.get(i).getProfit(), categoryName[i]);
+            System.out.format("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-26s | %-25s |%n",
+                    products.get(i).getId(), products.get(i).getName(), products.get(i).getImportPrice(), products.get(i).getExportPrice(), products.get(i).getProfit(), categoryName[i], products.get(i).getDateTime().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
         }
-        System.out.printf("+%4s+%30s+%12s+%12s+%12s+%15s+\n", "------", "--------------------------------", "--------------", "--------------", "--------------", "-----------------");
+        System.out.printf("+%4s+%30s+%12s+%12s+%12s+%15s+%27s+\n", "------", "--------------------------------", "--------------", "--------------", "--------------", "-----------------", "---------------------------");
     }
 }

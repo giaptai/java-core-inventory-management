@@ -1,3 +1,9 @@
+package work_w_files.services;
+
+import work_w_files.enums.Notification;
+import work_w_files.models.Category;
+import work_w_files.models.Product;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.FileOutputStream;
@@ -21,9 +27,9 @@ public class CategoryService implements ICategoryFile {
         //
         File dir = new File(pathCategory);
         if (!dir.exists()) {
-            dir.mkdir();
+            dir.mkdirs();
         }
-        File fileProduct = new File("data/categories.txt");
+        File fileProduct = new File(dir, "categories.txt");
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -32,7 +38,7 @@ public class CategoryService implements ICategoryFile {
             }
         }
         this.file = fileProduct;
-//        this.productService = new ProductService(file, this);
+//        this.productService = new work_w_files.services.ProductService(file, this);
     }
 
     public CategoryService() {
@@ -40,7 +46,7 @@ public class CategoryService implements ICategoryFile {
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File fileProduct = new File("data/categories.txt");
+        File fileProduct = new File(dir, "categories.txt");
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -88,7 +94,7 @@ public class CategoryService implements ICategoryFile {
         //selection sort
         for (int i = 0; i < categories.size() - 1; i++) {
             int max = i; // auto select current index is max
-            Category tempCategory = categories.get(i); //  assign the temp Category
+            Category tempCategory = categories.get(i); //  assign the temp work_w_files.models.Category
             for (int j = i + 1; j < categories.size(); j++) {
                 if (categories.get(j).getId() > categories.get(max).getId()) {
                     max = j;
@@ -107,7 +113,7 @@ public class CategoryService implements ICategoryFile {
         List<Category> categories = (readFile().isEmpty() ? new ArrayList<>() : readFile()); // readd file
         int choice;
         do {
-            System.out.println("Danh sách Category:");
+            System.out.println("Danh sách work_w_files.models.Category:");
             printAstable(categories);
             Category category = new Category();
             category.inputData(categories);
@@ -126,7 +132,7 @@ public class CategoryService implements ICategoryFile {
         Scanner sc = new Scanner(System.in);
         try {
             List<Category> categories = readFile(); // đọc file
-            System.out.println("Danh sách Category:");
+            System.out.println("Danh sách work_w_files.models.Category:");
             printAstable(categories);
             System.out.print("\nNhập id cần tìm: ");
             int categoryId = Integer.parseInt(sc.nextLine());
@@ -152,7 +158,7 @@ public class CategoryService implements ICategoryFile {
         try {
             List<Product> products = productService.readFile();
             List<Category> categories = readFile(); // readd file
-            System.out.println("Danh sách Category:");
+            System.out.println("Danh sách work_w_files.models.Category:");
             printAstable(categories);
             System.out.print("\nNhập id danh mục cần xóa: ");
             int categoryId = Integer.parseInt(sc.nextLine());
@@ -189,7 +195,7 @@ public class CategoryService implements ICategoryFile {
         Scanner sc = new Scanner(System.in);
         try {
             List<Category> categories = readFile(); // readd file
-            System.out.println("Danh sách Category:");
+            System.out.println("Danh sách work_w_files.models.Category:");
             printAstable(categories);
             System.out.print("\nNhập Name danh mục cần tìm: ");
             String categoryName = sc.nextLine();
@@ -208,27 +214,33 @@ public class CategoryService implements ICategoryFile {
         System.out.printf("| %-10s | %-30s | %-30s | %-15s |\n", "ID", "Name", "Description", "Status");
         System.out.println("+------------+--------------------------------+--------------------------------+-----------------+");
         for (Category category : categories) {
-            System.out.printf("| %-10d | %-30s | %-30s | %-15s |%n",
-                    category.getId(), category.getName(), category.getDescription(), category.getStatus() ? "HOẠT ĐỘNG" : "KHÔNG HOẠT ĐỘNG");
+            System.out.printf("| %-10d | %-30s | %-30s | %-24s |%n",
+                    category.getId(), category.getName(), category.getDescription(), category.getStatus() ? Notification.HOAT_DONG.getS() : Notification.KHONG_HOAT_DONG.getS());
         }
         System.out.printf("+%10s+%30s+%30s+%15s+\n", "------------", "--------------------------------", "--------------------------------", "-----------------");
     }
 
     @Override
     public void statisticsProducts() {
-        List<Category> categories = readFile();
-        List<Product> products = productService.readFile();
-        long[] countSP = new long[categories.size()];
-        for (int i = 0; i < categories.size(); i++) {
-            final int currentIndex = i;
-            countSP[i] = products.stream().filter(product -> product.getCategoryId() == categories.get(currentIndex).getId()).count();
+        try {
+            List<Category> categories = readFile();
+            List<Product> products = productService.readFile().isEmpty() ? new ArrayList<>() : productService.readFile();
+            long[] countSP = new long[categories.size()];
+            System.out.println("+------------+--------------------------------+--------------------------------+-----------------+------------+");
+            for (int i = 0; i < categories.size(); i++) {
+                final int currentIndex = i;
+                countSP[i] = products.stream().filter(product -> product.getCategoryId() == categories.get(currentIndex).getId()).count();
+            }
+            System.out.printf("| %1$-10s | %2$-30s | %3$-30s | %4$-15s | %5$-10s |\n", "ID", "Name", "Description", "Status", "Products");
+            System.out.println("+------------+--------------------------------+--------------------------------+-----------------+------------+");
+            for (int i = 0; i < categories.size(); i++) {
+                System.out.format("| %-10d | %-30s | %-30s | %-24s | %-10s |%n",
+                        categories.get(i).getId(), categories.get(i).getName(), categories.get(i).getDescription(), categories.get(i).getStatus() ? Notification.HOAT_DONG.getS() : Notification.KHONG_HOAT_DONG.getS(), countSP[i]);
+            }
+            System.out.printf("+%10s+%30s+%30s+%15s+%10s+\n", "------------", "--------------------------------", "--------------------------------", "-----------------", "------------");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.printf("| %1$-10s | %2$-30s | %3$-30s | %4$-15s | %5$-10s |\n", "ID", "Name", "Description", "Status", "Products");
-        System.out.println("+------------+--------------------------------+--------------------------------+-----------------+------------+");
-        for (int i = 0; i < categories.size(); i++) {
-            System.out.format("| %-10d | %-30s | %-30s | %-24s | %-10s |%n",
-                    categories.get(i).getId(), categories.get(i).getName(), categories.get(i).getDescription(), categories.get(i).getStatus() ? Notification.HOAT_DONG.getS() : Notification.KHONG_HOAT_DONG.getS(), countSP[i]);
-        }
-        System.out.printf("+%10s+%30s+%30s+%15s+%10s+\n", "------------", "--------------------------------", "--------------------------------", "-----------------", "------------");
+
     }
 }
