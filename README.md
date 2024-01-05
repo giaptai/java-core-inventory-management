@@ -16,11 +16,11 @@
 - ANSI: **printf out with the color text**
 - Enum class: **store constant variable**
 ## Screenshots
-![Screenshot 2023-12-30 102344](https://github.com/giaptai/java-core-inventory-management/assets/102518847/1ad41949-bdd4-4ead-b6a4-3cd723f1dbee)
+![Screenshot 2023-12-30 102344](https://github.com/giaptai/java-core-inventory-management/assets/102518847/7985b6a6-449c-4b90-9a28-4de586d69c1c)
 
-![Screenshot 2023-12-30 102414](https://github.com/giaptai/java-core-inventory-management/assets/102518847/3d038b6e-fa2a-4bbc-a22b-ab31afb127a6)
+![Screenshot 2023-12-30 102414](https://github.com/giaptai/java-core-inventory-management/assets/102518847/2592f9ba-690f-4360-a1b0-d1f3024a47d4)
 
-![Screenshot 2023-12-30 102440](https://github.com/giaptai/java-core-inventory-management/assets/102518847/0d728020-faea-43b9-9beb-b8e7c6adf269)
+![Screenshot 2023-12-30 102440](https://github.com/giaptai/java-core-inventory-management/assets/102518847/933e5a56-c726-4b29-8a04-edd686be2bfe)
 
 ![Screenshot 2023-12-30 102546](https://github.com/giaptai/java-core-inventory-management/assets/102518847/8017d6fc-1cbc-4a98-9c9b-3c73844a6f4c)
 
