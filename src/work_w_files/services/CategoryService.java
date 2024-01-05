@@ -88,6 +88,8 @@ public class CategoryService implements ICategoryFile {
         } catch (IOException e) {
             System.err.println("Loi khi doc file");
         } catch (ClassNotFoundException e) {
+            //khi dịch chuyển class thì file lưu các dữ liệu lúc đó sẽ bị sai đường dẫn,
+            // dẫn tới khi đọc file thì sẽ lỗi Class not found
 //            throw new RuntimeException(e.getCause());
             e.printStackTrace();
         }
