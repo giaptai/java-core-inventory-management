@@ -2,7 +2,7 @@
 > A project built by Java language, help manages your storage
 
 
-## Knowledge Application
+## Apply knowledge
 > Java 8, 
 - Object-oriented programing (OOP): ***encapsulation, abstraction, interface, Inheritance***
 - Conditions: **if else, switch case**
