@@ -1,3 +1,5 @@
+package work_w_files.services;
+
 import java.util.List;
 
 public interface IWorkWithFile<T> {

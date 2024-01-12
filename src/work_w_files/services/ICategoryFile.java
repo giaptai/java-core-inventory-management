@@ -1,3 +1,7 @@
+package work_w_files.services;
+
+import work_w_files.models.Category;
+
 import java.util.List;
 
 public interface ICategoryFile extends IWorkWithFile<Category> {

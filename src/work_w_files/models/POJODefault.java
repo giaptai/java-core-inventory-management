@@ -1,3 +1,5 @@
+package work_w_files.models;
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -53,7 +55,7 @@ public class POJODefault<T1, T2, T3, T4> implements Serializable {
 
     @Override
     public String toString() {
-        return "POJODefault{" +
+        return "work_w_files.models.POJODefault{" +
                 "id=" + id +
                 ", name=" + name +
                 ", description=" + description +

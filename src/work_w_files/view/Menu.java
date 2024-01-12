@@ -1,3 +1,9 @@
+package work_w_files.view;
+
+import work_w_files.services.CategoryService;
+import work_w_files.services.ICategoryFile;
+import work_w_files.services.ProductService;
+
 import java.util.Scanner;
 
 public class Menu {

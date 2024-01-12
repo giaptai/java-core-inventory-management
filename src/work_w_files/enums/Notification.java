@@ -1,3 +1,5 @@
+package work_w_files.enums;
+
 public enum Notification {
     ADD_TO_FILE_SUCCESS(""),
     ADD_TO_FILE_FAIL(""),

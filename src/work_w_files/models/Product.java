@@ -1,3 +1,5 @@
+package work_w_files.models;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -8,6 +10,15 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
     private double exportPrice;
     private double profit;
     private int categoryId;
+//    private LocalDateTime dateTime;
+//
+//    public LocalDateTime getDateTime() {
+//        return dateTime;
+//    }
+//
+//    public void setDateTime(LocalDateTime dateTime) {
+//        this.dateTime = dateTime;
+//    }
 
     public double getImportPrice() {
         return importPrice;
@@ -52,6 +63,15 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
         this.profit = exportPrice - importPrice;
         this.categoryId = categoryId;
     }
+
+//    public work_w_files.models.Product(String id, String name, String description, Boolean status, double importPrice, double exportPrice, double profit, int categoryId, LocalDateTime dateTime) {
+//        super(id, name, description, status);
+//        this.importPrice = importPrice;
+//        this.exportPrice = exportPrice;
+//        this.profit = profit;
+//        this.categoryId = categoryId;
+//        this.dateTime = dateTime;
+//    }
 
     @Override
     public void inputData(List<Product> products, List<Category> categories) {
@@ -156,7 +176,7 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "work_w_files.models.Product{" +
                 super.toString() +
                 ", importPrice=" + importPrice +
                 ", exportPrice=" + exportPrice +

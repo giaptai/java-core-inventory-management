@@ -1,3 +1,9 @@
+package work_w_files.services;
+
+import work_w_files.enums.Notification;
+import work_w_files.models.Category;
+import work_w_files.models.Product;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.FileOutputStream;
@@ -23,7 +29,8 @@ public class CategoryService implements ICategoryFile {
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File fileProduct = new File("data/categories.txt");
+        File fileProduct = new File(dir,"categories.txt");
+
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -32,7 +39,7 @@ public class CategoryService implements ICategoryFile {
             }
         }
         this.file = fileProduct;
-//        this.productService = new ProductService(file, this);
+//        this.productService = new work_w_files.services.ProductService(file, this);
     }
 
     public CategoryService() {
@@ -40,7 +47,7 @@ public class CategoryService implements ICategoryFile {
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File fileProduct = new File("data/categories.txt");
+        File fileProduct = new File(dir,"categories.txt");
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -82,13 +89,17 @@ public class CategoryService implements ICategoryFile {
         } catch (IOException e) {
             System.err.println("Loi khi doc file");
         } catch (ClassNotFoundException e) {
+            //khi dịch chuyển class thì file lưu các dữ liệu lúc đó sẽ bị sai đường dẫn,
+            // dẫn tới khi đọc file thì sẽ lỗi Class not found
 //            throw new RuntimeException(e.getCause());
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.err.println("\nLoi ClassNotFoundException");
+
         }
         //selection sort
         for (int i = 0; i < categories.size() - 1; i++) {
             int max = i; // auto select current index is max
-            Category tempCategory = categories.get(i); //  assign the temp Category
+            Category tempCategory = categories.get(i); //  assign the temp work_w_files.models.Category
             for (int j = i + 1; j < categories.size(); j++) {
                 if (categories.get(j).getId() > categories.get(max).getId()) {
                     max = j;
@@ -107,7 +118,7 @@ public class CategoryService implements ICategoryFile {
         List<Category> categories = (readFile().isEmpty() ? new ArrayList<>() : readFile()); // readd file
         int choice;
         do {
-            System.out.println("Danh sách Category:");
+            System.out.println("Category:");
             printAstable(categories);
             Category category = new Category();
             category.inputData(categories);
@@ -126,7 +137,7 @@ public class CategoryService implements ICategoryFile {
         Scanner sc = new Scanner(System.in);
         try {
             List<Category> categories = readFile(); // đọc file
-            System.out.println("Danh sách Category:");
+            System.out.println("Danh sách work_w_files.models.Category:");
             printAstable(categories);
             System.out.print("\nNhập id cần tìm: ");
             int categoryId = Integer.parseInt(sc.nextLine());
@@ -152,7 +163,7 @@ public class CategoryService implements ICategoryFile {
         try {
             List<Product> products = productService.readFile();
             List<Category> categories = readFile(); // readd file
-            System.out.println("Danh sách Category:");
+            System.out.println("Danh sách work_w_files.models.Category:");
             printAstable(categories);
             System.out.print("\nNhập id danh mục cần xóa: ");
             int categoryId = Integer.parseInt(sc.nextLine());
@@ -189,7 +200,7 @@ public class CategoryService implements ICategoryFile {
         Scanner sc = new Scanner(System.in);
         try {
             List<Category> categories = readFile(); // readd file
-            System.out.println("Danh sách Category:");
+            System.out.println("Danh sách work_w_files.models.Category:");
             printAstable(categories);
             System.out.print("\nNhập Name danh mục cần tìm: ");
             String categoryName = sc.nextLine();
@@ -208,8 +219,8 @@ public class CategoryService implements ICategoryFile {
         System.out.printf("| %-10s | %-30s | %-30s | %-15s |\n", "ID", "Name", "Description", "Status");
         System.out.println("+------------+--------------------------------+--------------------------------+-----------------+");
         for (Category category : categories) {
-            System.out.printf("| %-10d | %-30s | %-30s | %-15s |%n",
-                    category.getId(), category.getName(), category.getDescription(), category.getStatus() ? "HOẠT ĐỘNG" : "KHÔNG HOẠT ĐỘNG");
+            System.out.printf("| %-10d | %-30s | %-30s | %-24s |%n",
+                    category.getId(), category.getName(), category.getDescription(), category.getStatus() ? Notification.HOAT_DONG.getS() : Notification.KHONG_HOAT_DONG.getS());
         }
         System.out.printf("+%10s+%30s+%30s+%15s+\n", "------------", "--------------------------------", "--------------------------------", "-----------------");
     }
