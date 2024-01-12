@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="56277a3d-c97d-4c3b-b369-ea3a37489d62" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/data/categories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/products.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/models/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/services/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/models/ICategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICategoryFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/services/ICategoryFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/models/IProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IProductFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/services/IProductFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IWorkWithFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/services/IWorkWithFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/view/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/enums/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/POJODefault.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/models/POJODefault.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/work_w_files/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Store.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2Zh6PpfiHecjQvobrUdf6ASGUxl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "20",
+    "last_opened_file_path": "C:/Users/henta/IdeaProjects/rikei_BTL_002_edit",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\henta\IdeaProjects\rikei_BTL_002\src\work_w_files\services" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Store">
+    <configuration name="Store" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/Java/jdk-20" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Store" />
+      <module name="rikei_BTL_002" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestSort" />
+      <module name="rikei_BTL_002" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="rikei_BTL_002_edit" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="rikei_BTL_002_edit" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Store" />
+        <item itemvalue="Application.TestSort" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56277a3d-c97d-4c3b-b369-ea3a37489d62" name="Changes" comment="" />
+      <created>1702861944495</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702861944495</updated>
+      <workItem from="1702861945513" duration="4177000" />
+      <workItem from="1702901158791" duration="169000" />
+      <workItem from="1702994727611" duration="3853000" />
+      <workItem from="1703129642339" duration="40000" />
+      <workItem from="1703304859429" duration="4077000" />
+      <workItem from="1703309009576" duration="214000" />
+      <workItem from="1703493872488" duration="14998000" />
+      <workItem from="1703588194629" duration="11708000" />
+      <workItem from="1703678614334" duration="4161000" />
+      <workItem from="1703737948083" duration="14158000" />
+      <workItem from="1703851642183" duration="3884000" />
+      <workItem from="1703862951817" duration="5786000" />
+      <workItem from="1703902738634" duration="13775000" />
+      <workItem from="1703945298754" duration="25000" />
+      <workItem from="1703984995013" duration="7619000" />
+      <workItem from="1704164337495" duration="2729000" />
+      <workItem from="1704283044267" duration="1323000" />
+      <workItem from="1704455881693" duration="4941000" />
+      <workItem from="1704715673711" duration="1469000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.UnsupportedOperationException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="12" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="13" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.EOFException" package="java.io" />
+          <option name="timeStamp" value="51" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/ProductService.java</url>
+          <line>174</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/ProductService.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/ProductService.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>223</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>162</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>161</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>109</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/ProductService.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/ProductService.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/ProductService.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/ProductService.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/work_w_files/services/CategoryService.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="tempProduct" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
