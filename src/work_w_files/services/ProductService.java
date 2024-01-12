@@ -3,8 +3,11 @@ package work_w_files.services;
 import work_w_files.models.Category;
 import work_w_files.models.Product;
 import work_w_files.services.CategoryService;
+<<<<<<< HEAD
 import work_w_files.services.ICategoryFile;
 import work_w_files.services.IWorkWithFile;
+=======
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.EOFException;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -33,7 +37,7 @@ public class ProductService implements IWorkWithFile<Product> {
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File fileProduct = new File("data/products.txt");
+        File fileProduct = new File(dir,"products.txt");
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -49,7 +53,7 @@ public class ProductService implements IWorkWithFile<Product> {
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File fileProduct = new File("data/products.txt");
+        File fileProduct = new File("C:/Users/henta/IdeaProjects/rikei_BTL_002 - Copy/data/products.txt");
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -100,9 +104,14 @@ public class ProductService implements IWorkWithFile<Product> {
             e.printStackTrace();
             System.err.println("Loi khi doc file");
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+<<<<<<< HEAD
         products.sort((o1, o2) -> o2.getId().compareTo(o1.getId()));
+=======
+//        products.sort((o1, o2) -> o2.getId().compareTo(o1.getId()));
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
         return products;
 //        return products;
     }
@@ -233,10 +242,12 @@ public class ProductService implements IWorkWithFile<Product> {
         for (Category value : categories) {
             categoryIdToNameMap.put(value.getId(), "\033[1;35m"+value.getName()+"\u001B[0m");
         }
+        System.out.println("+------+--------------------------------+--------------+--------------+--------------+-----------------+---------------------------+");
         for (int i = 0; i < products.size(); i++) {
             int categoryId = products.get(i).getCategoryId();
             categoryName[i] = categoryIdToNameMap.get(categoryId);
         }
+<<<<<<< HEAD
         System.out.printf("| %-4s | %-30s | %-15s | %-15s | %-15s | %-15s |\n", "ID", "Name", "Import Price", "Export Price", "Profit", "Category");
         System.out.println("+------+--------------------------------+-----------------+-----------------+-----------------+-----------------+");
 //        for (work_w_files.models.Product product : products) {
@@ -248,5 +259,14 @@ public class ProductService implements IWorkWithFile<Product> {
                     products.get(i).getId(), products.get(i).getName(), products.get(i).getImportPrice(), products.get(i).getExportPrice(), products.get(i).getProfit(), categoryName[i]);
         }
         System.out.printf("+%4s+%30s+%15s+%15s+%15s+%15s+\n", "------", "--------------------------------", "-----------------", "-----------------", "-----------------", "-----------------");
+=======
+        System.out.printf("| %-4s | %-30s | %-12s | %-12s | %-12s | %-15s | %-25s |\n", "ID", "Name", "Import Price", "Export Price", "Profit", "Category", "Date Time Update");
+        System.out.println("+------+--------------------------------+--------------+--------------+--------------+-----------------+---------------------------+");
+        for (int i = 0; i < products.size(); i++) {
+            System.out.format("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-26s | %-25s |%n",
+                    products.get(i).getId(), products.get(i).getName(), products.get(i).getImportPrice(), products.get(i).getExportPrice(), products.get(i).getProfit(), categoryName[i], products.get(i).getDateTime().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+        }
+        System.out.printf("+%4s+%30s+%12s+%12s+%12s+%15s+%27s+\n", "------", "--------------------------------", "--------------", "--------------", "--------------", "-----------------", "---------------------------");
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
     }
 }

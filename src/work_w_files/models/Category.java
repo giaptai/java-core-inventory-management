@@ -31,7 +31,11 @@ public class Category extends POJODefault<Integer, String, String, Boolean> impl
 //                    super.setId(id);
                     this.setId(id);
                     break;
+<<<<<<< HEAD
                 }
+=======
+                }else System.err.println("Phải là số nguyên lớn hơn 0, duy nhất");
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
 //                else throw new NumberFormatException("");
             } catch (NumberFormatException e) {
                 System.err.println("Phải là số nguyên lớn hơn 0, duy nhất");

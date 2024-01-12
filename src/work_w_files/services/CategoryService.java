@@ -27,10 +27,14 @@ public class CategoryService implements ICategoryFile {
         //
         File dir = new File(pathCategory);
         if (!dir.exists()) {
-            dir.mkdir();
+            dir.mkdirs();
         }
+<<<<<<< HEAD
         File fileProduct = new File(dir,"categories.txt");
 
+=======
+        File fileProduct = new File(dir, "categories.txt");
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -47,7 +51,11 @@ public class CategoryService implements ICategoryFile {
         if (!dir.exists()) {
             dir.mkdir();
         }
+<<<<<<< HEAD
         File fileProduct = new File(dir,"categories.txt");
+=======
+        File fileProduct = new File(dir, "categories.txt");
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -118,7 +126,11 @@ public class CategoryService implements ICategoryFile {
         List<Category> categories = (readFile().isEmpty() ? new ArrayList<>() : readFile()); // readd file
         int choice;
         do {
+<<<<<<< HEAD
             System.out.println("Category:");
+=======
+            System.out.println("Danh sách work_w_files.models.Category:");
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
             printAstable(categories);
             Category category = new Category();
             category.inputData(categories);
@@ -227,19 +239,25 @@ public class CategoryService implements ICategoryFile {
 
     @Override
     public void statisticsProducts() {
-        List<Category> categories = readFile();
-        List<Product> products = productService.readFile();
-        long[] countSP = new long[categories.size()];
-        for (int i = 0; i < categories.size(); i++) {
-            final int currentIndex = i;
-            countSP[i] = products.stream().filter(product -> product.getCategoryId() == categories.get(currentIndex).getId()).count();
+        try {
+            List<Category> categories = readFile();
+            List<Product> products = productService.readFile().isEmpty() ? new ArrayList<>() : productService.readFile();
+            long[] countSP = new long[categories.size()];
+            System.out.println("+------------+--------------------------------+--------------------------------+-----------------+------------+");
+            for (int i = 0; i < categories.size(); i++) {
+                final int currentIndex = i;
+                countSP[i] = products.stream().filter(product -> product.getCategoryId() == categories.get(currentIndex).getId()).count();
+            }
+            System.out.printf("| %1$-10s | %2$-30s | %3$-30s | %4$-15s | %5$-10s |\n", "ID", "Name", "Description", "Status", "Products");
+            System.out.println("+------------+--------------------------------+--------------------------------+-----------------+------------+");
+            for (int i = 0; i < categories.size(); i++) {
+                System.out.format("| %-10d | %-30s | %-30s | %-24s | %-10s |%n",
+                        categories.get(i).getId(), categories.get(i).getName(), categories.get(i).getDescription(), categories.get(i).getStatus() ? Notification.HOAT_DONG.getS() : Notification.KHONG_HOAT_DONG.getS(), countSP[i]);
+            }
+            System.out.printf("+%10s+%30s+%30s+%15s+%10s+\n", "------------", "--------------------------------", "--------------------------------", "-----------------", "------------");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.printf("| %1$-10s | %2$-30s | %3$-30s | %4$-15s | %5$-10s |\n", "ID", "Name", "Description", "Status", "Products");
-        System.out.println("+------------+--------------------------------+--------------------------------+-----------------+------------+");
-        for (int i = 0; i < categories.size(); i++) {
-            System.out.format("| %-10d | %-30s | %-30s | %-24s | %-10s |%n",
-                    categories.get(i).getId(), categories.get(i).getName(), categories.get(i).getDescription(), categories.get(i).getStatus() ? Notification.HOAT_DONG.getS() : Notification.KHONG_HOAT_DONG.getS(), countSP[i]);
-        }
-        System.out.printf("+%10s+%30s+%30s+%15s+%10s+\n", "------------", "--------------------------------", "--------------------------------", "-----------------", "------------");
+
     }
 }

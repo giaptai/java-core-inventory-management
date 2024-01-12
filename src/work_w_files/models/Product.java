@@ -1,5 +1,9 @@
 package work_w_files.models;
 
+<<<<<<< HEAD
+=======
+import java.time.LocalDateTime;
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -10,6 +14,7 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
     private double exportPrice;
     private double profit;
     private int categoryId;
+<<<<<<< HEAD
 //    private LocalDateTime dateTime;
 //
 //    public LocalDateTime getDateTime() {
@@ -19,6 +24,17 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
 //    public void setDateTime(LocalDateTime dateTime) {
 //        this.dateTime = dateTime;
 //    }
+=======
+    private LocalDateTime dateTime;
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+>>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
 
     public double getImportPrice() {
         return importPrice;
@@ -167,6 +183,8 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
                 System.err.println("Số, phải nhập trong các giá trị mã danh mục đã lưu trước đó");
             }
         } while (true);
+
+        this.setDateTime(LocalDateTime.now());
     }
 
     @Override
