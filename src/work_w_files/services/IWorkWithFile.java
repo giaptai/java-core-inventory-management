@@ -3,9 +3,25 @@ package work_w_files.services;
 import java.util.List;
 
 public interface IWorkWithFile<T> {
-    public void writeToFile(List<T> ts);
-    public List<T> readFile();
-    public void addToFile();
-    public void updateFile();
-    public void deteleFile();
+    void writeToFile(List<T> ts);
+
+    List<T> readFile();
+
+    void addToFile();
+
+    void updateFile();
+
+    void deteleFile();
+
+    default void findByName() {
+    };
+
+    default void statisticsProducts() {
+    };
+
+    void printAstable(List<T> t);
+
+    default void writeExcel() {
+
+    };
 }

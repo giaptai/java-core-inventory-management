@@ -1,30 +1,18 @@
 package work_w_files.models;
 
-<<<<<<< HEAD
-=======
 import java.time.LocalDateTime;
->>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import work_w_files.common.AppConstants;
 
 public class Product extends POJODefault<String, String, String, Boolean> implements IProduct {
     private double importPrice;
     private double exportPrice;
     private double profit;
     private int categoryId;
-<<<<<<< HEAD
-//    private LocalDateTime dateTime;
-//
-//    public LocalDateTime getDateTime() {
-//        return dateTime;
-//    }
-//
-//    public void setDateTime(LocalDateTime dateTime) {
-//        this.dateTime = dateTime;
-//    }
-=======
     private LocalDateTime dateTime;
 
     public LocalDateTime getDateTime() {
@@ -34,7 +22,6 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
->>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
 
     public double getImportPrice() {
         return importPrice;
@@ -69,25 +56,16 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
     }
 
     public Product() {
-        super();
     }
 
-    public Product(String id, String name, double importPrice, double exportPrice, String description, boolean status, int categoryId) {
+    public Product(String id, String name, double importPrice, double exportPrice, String description, boolean status,
+            int categoryId) {
         super(id, name, description, status);
         this.importPrice = importPrice;
         this.exportPrice = exportPrice;
         this.profit = exportPrice - importPrice;
         this.categoryId = categoryId;
     }
-
-//    public work_w_files.models.Product(String id, String name, String description, Boolean status, double importPrice, double exportPrice, double profit, int categoryId, LocalDateTime dateTime) {
-//        super(id, name, description, status);
-//        this.importPrice = importPrice;
-//        this.exportPrice = exportPrice;
-//        this.profit = profit;
-//        this.categoryId = categoryId;
-//        this.dateTime = dateTime;
-//    }
 
     @Override
     public void inputData(List<Product> products, List<Category> categories) {
@@ -103,10 +81,10 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
                 int checkId = products.stream().filter(item -> item.getId().equals(id)).toList().size(); // check duplicate id products
                 Matcher mId = piD.matcher(id);
                 if (checkId == 0 && mId.matches()) {
-//                    super.setId(id);
                     this.setId(id);
                     break;
-                } else throw new Exception("");
+                } else
+                    throw new Exception("");
             } catch (Exception e) {
                 System.err.println("gồm 4 kí tự, bắt đầu bằng “P”, duy nhất");
             }
@@ -116,10 +94,10 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
             String name = sc.nextLine();
             Matcher mName = pName.matcher(name);
             if (mName.matches()) {
-//                super.setName(name);
                 this.setName(name);
                 break;
-            } else System.err.println("Duy nhất, từ 6-30 kí tự");
+            } else
+                System.err.println("Duy nhất, từ 6-30 kí tự");
         } while (true);
         do {
             try {
@@ -137,7 +115,7 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
             try {
                 System.out.print("\nNhập exportPrice: ");
                 exportPrice = Double.parseDouble(sc.nextLine());
-                if (exportPrice > 0 && exportPrice > importPrice * MIN_INTEREST_RATE) {
+                if (exportPrice > 0 && exportPrice > importPrice * AppConstants.MIN_INTEREST_RATE) {
                     this.setExportPrice(exportPrice);
                     break;
                 }
@@ -146,17 +124,18 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
                         "lớn hơn giá nhập ít nhất MIN_INTEREST_RATE lần)");
             }
         } while (true);
-//        this.setProfit(exportPrice - importPrice); // set profit
+        // this.setProfit(exportPrice - importPrice); // set profit
         calProfit(); // set profit
         do {
             System.out.print("\nNhập description: ");
             String description = sc.nextLine();
             Matcher mDescription = pDescription.matcher(description);
             if (mDescription.matches()) {
-//                super.setDescription(description);
+                // super.setDescription(description);
                 this.setDescription(description);
                 break;
-            } else System.err.println("Không bỏ trống");
+            } else
+                System.err.println("Không bỏ trống");
         } while (true);
         do {
             System.out.print("\nNhập status: ");
@@ -164,26 +143,28 @@ public class Product extends POJODefault<String, String, String, Boolean> implem
             Matcher mStatus = pStatus.matcher(checkStatus);
             if (mStatus.matches()) {
                 boolean status = Boolean.parseBoolean(checkStatus);
-//                super.setStatus(status);
+                // super.setStatus(status);
                 this.setStatus(status);
                 break;
-            } else System.err.println("Chỉ nhận true/ false");
+            } else
+                System.err.println("Chỉ nhận true/ false");
         } while (true);
 
         do {
             try {
                 System.out.print("\nNhập categoryId: ");
                 int categoryId = Integer.parseInt(sc.nextLine());
-                long checkCategoryId = categories.stream().filter(category -> category.getId().equals(categoryId)).count();
+                long checkCategoryId = categories.stream().filter(category -> category.getId().equals(categoryId))
+                        .count();
                 if (checkCategoryId > 0) {
                     this.setCategoryId(categoryId);
                     break;
-                } else throw new Exception("");
+                } else
+                    throw new Exception("");
             } catch (Exception e) {
                 System.err.println("Số, phải nhập trong các giá trị mã danh mục đã lưu trước đó");
             }
         } while (true);
-
         this.setDateTime(LocalDateTime.now());
     }
 

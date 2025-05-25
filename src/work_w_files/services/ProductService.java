@@ -1,13 +1,8 @@
 package work_w_files.services;
 
+import work_w_files.common.AppConstants;
 import work_w_files.models.Category;
 import work_w_files.models.Product;
-import work_w_files.services.CategoryService;
-<<<<<<< HEAD
-import work_w_files.services.ICategoryFile;
-import work_w_files.services.IWorkWithFile;
-=======
->>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.EOFException;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -25,19 +19,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ProductService implements IWorkWithFile<Product> {
-    public static final String pathProduct = "data";
-    private final File file;
-    private final ICategoryFile category;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-    public ProductService(File file, ICategoryFile category) {
+public class ProductService implements IWorkWithFile<Product> {
+    private final File file;
+    private final IWorkWithFile<Category> category;
+
+    public ProductService(File file, IWorkWithFile<Category> category) {
         this.category = category;
         //
-        File dir = new File(pathProduct);
+        File dir = new File(AppConstants.PATHFILE);
         if (!dir.exists()) {
             dir.mkdir();
         }
-        File fileProduct = new File(dir,"products.txt");
+        File fileProduct = new File(dir, "products.txt");
         if (!fileProduct.exists()) {
             try {
                 fileProduct.createNewFile();
@@ -49,7 +46,7 @@ public class ProductService implements IWorkWithFile<Product> {
     }
 
     public ProductService() {
-        File dir = new File(pathProduct);
+        File dir = new File(AppConstants.PATHFILE);
         if (!dir.exists()) {
             dir.mkdir();
         }
@@ -85,9 +82,9 @@ public class ProductService implements IWorkWithFile<Product> {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-            products = ((List<Product>) inputStream.readObject());
+            products = (List<Product>) inputStream.readObject();
 
-            //insertion sort
+            // insertion sort
             for (int i = 1; i < products.size(); i++) {
                 int j = i;
                 Product currentProduct = products.get(i);
@@ -98,25 +95,21 @@ public class ProductService implements IWorkWithFile<Product> {
                 products.set(j, currentProduct);
             }
         } catch (EOFException e) {
-//            e.printStackTrace();
+            // e.printStackTrace();
             System.err.println("Hết dòng");
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Loi khi doc file");
         } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
+            // throw new RuntimeException(e);
             e.printStackTrace();
         }
-<<<<<<< HEAD
         products.sort((o1, o2) -> o2.getId().compareTo(o1.getId()));
-=======
-//        products.sort((o1, o2) -> o2.getId().compareTo(o1.getId()));
->>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
         return products;
-//        return products;
+        // return products;
     }
 
-    //add product in file
+    // add product in file
     @Override
     public void addToFile() {
         Scanner sc = new Scanner(System.in);
@@ -129,7 +122,7 @@ public class ProductService implements IWorkWithFile<Product> {
                 printAstable(products);
                 Product product1 = new Product();
                 product1.inputData(products, categories);
-//                product1.setDateTime(LocalDateTime.now());
+                // product1.setDateTime(LocalDateTime.now());
                 products.add(product1);
                 System.out.print("Bạn có muốn nhập thêm không? 1. Có 2. Không: ");
                 choice = Integer.parseInt(sc.nextLine());
@@ -137,10 +130,11 @@ public class ProductService implements IWorkWithFile<Product> {
             writeToFile(products);
         } catch (Exception e) {
             System.err.println(e);
+        } finally {
         }
     }
 
-    //edit category in file
+    // edit category in file
     @Override
     public void updateFile() {
         Scanner sc = new Scanner(System.in);
@@ -150,7 +144,7 @@ public class ProductService implements IWorkWithFile<Product> {
         printAstable(products);
         System.out.print("Nhập id cần tìm: ");
         String productId = sc.nextLine();
-        //dùng tìm kiếm nhị phân
+        // dùng tìm kiếm nhị phân
         int left = 0;
         int high = products.size() - 1;
         while (left <= high) {
@@ -167,7 +161,7 @@ public class ProductService implements IWorkWithFile<Product> {
         }
     }
 
-    //xóa file
+    // xóa file
     @Override
     public void deteleFile() {
         Scanner sc = new Scanner(System.in);
@@ -176,19 +170,20 @@ public class ProductService implements IWorkWithFile<Product> {
         printAstable(products);
         System.out.print("Nhập id sản phẩm cần xóa: ");
         String productId = sc.nextLine();
-        //using binary search
+        // using binary search
         int left = 0;
         int right = products.size() - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (products.get(mid).getId().equals(productId)) {
                 products.remove(mid);
-                //writeToFile(products);
+                // writeToFile(products);
                 break;
             }
             if (productId.compareTo(products.get(mid).getId()) > 0) {
                 right = mid - 1;
-            } else left = mid + 1;
+            } else
+                left = mid + 1;
         }
     }
 
@@ -202,7 +197,7 @@ public class ProductService implements IWorkWithFile<Product> {
                     return o1.getName().compareTo(o2.getName());
                 }
             });
-//            products.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+            // products.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
             printAstable(products);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -213,8 +208,9 @@ public class ProductService implements IWorkWithFile<Product> {
         System.out.println("Hiển thị lợi nhuận từ cao - thấp: ");
         try {
             List<Product> products = readFile(); // readd file
-            //comparator cho phép sắp xếp kiểu khác mặc định tại 1 thời diểm runtime
-            products.sort((o1, o2) -> (int) (Math.round(o2.getProfit() * 100.0 / 100.0) - Math.round(o1.getProfit() * 100.0 / 100.0)));
+            // comparator cho phép sắp xếp kiểu khác mặc định tại 1 thời diểm runtime
+            products.sort((o1, o2) -> (int) (Math.round(o2.getProfit() * 100.0 / 100.0)
+                    - Math.round(o1.getProfit() * 100.0 / 100.0)));
             printAstable(products);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -227,46 +223,80 @@ public class ProductService implements IWorkWithFile<Product> {
         System.out.print("Tìm kiếm sản phẩm: ");
         try {
             String nameProduct = sc.nextLine();
-            products = products.stream().filter(product -> product.getName().toLowerCase().contains(nameProduct.toLowerCase())).toList();
+            products = products.stream()
+                    .filter(product -> product.getName().toLowerCase().contains(nameProduct.toLowerCase())).toList();
             System.out.println("List Products: ");
             printAstable(products);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
         }
     }
 
-    private void printAstable(List<Product> products) {
+    @Override
+    public void printAstable(List<Product> products) {
+        String line = "+------+--------------------------------+-----------------+-----------------+-----------------+-----------------+";
         List<Category> categories = category.readFile();
         String[] categoryName = new String[products.size()];
         Map<Integer, String> categoryIdToNameMap = new HashMap<>();
         for (Category value : categories) {
-            categoryIdToNameMap.put(value.getId(), "\033[1;35m"+value.getName()+"\u001B[0m");
+            String rawName = value.getName();
+            String trimmed = rawName.length() > 15 ? rawName.substring(0, 12) + "..." : rawName;
+            String formatted = String.format("\033[1;35m%-15s\u001B[0m", trimmed);
+            categoryIdToNameMap.put(value.getId(), formatted);
         }
-        System.out.println("+------+--------------------------------+--------------+--------------+--------------+-----------------+---------------------------+");
+        System.out.println(line);
         for (int i = 0; i < products.size(); i++) {
             int categoryId = products.get(i).getCategoryId();
             categoryName[i] = categoryIdToNameMap.get(categoryId);
         }
-<<<<<<< HEAD
-        System.out.printf("| %-4s | %-30s | %-15s | %-15s | %-15s | %-15s |\n", "ID", "Name", "Import Price", "Export Price", "Profit", "Category");
-        System.out.println("+------+--------------------------------+-----------------+-----------------+-----------------+-----------------+");
-//        for (work_w_files.models.Product product : products) {
-//            System.out.printf("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-8d |%n",
-//                    product.getId(), product.getName(), product.getImportPrice(), product.getExportPrice(), product.getProfit(), product.getCategoryId());
-//        }
+        System.out.printf("| %-4s | %-30s | %-15s | %-15s | %-15s | %-15s |\n",
+                "ID", "Name", "Import Price", "Export Price", "Profit", "Category");
+        System.out.println(line);
         for (int i = 0; i < products.size(); i++) {
-            System.out.format("| %-4s | %-30s | %,-15.2f | %,-15.2f | %,-15.2f | %-26s |%n",
-                    products.get(i).getId(), products.get(i).getName(), products.get(i).getImportPrice(), products.get(i).getExportPrice(), products.get(i).getProfit(), categoryName[i]);
+            System.out.format("| %-4s | %-30s | %,-15.2f | %,-15.2f | %,-15.2f | %-15s |%n",
+                    products.get(i).getId(), products.get(i).getName(), products.get(i).getImportPrice(),
+                    products.get(i).getExportPrice(), products.get(i).getProfit(), categoryName[i]);
         }
-        System.out.printf("+%4s+%30s+%15s+%15s+%15s+%15s+\n", "------", "--------------------------------", "-----------------", "-----------------", "-----------------", "-----------------");
-=======
-        System.out.printf("| %-4s | %-30s | %-12s | %-12s | %-12s | %-15s | %-25s |\n", "ID", "Name", "Import Price", "Export Price", "Profit", "Category", "Date Time Update");
-        System.out.println("+------+--------------------------------+--------------+--------------+--------------+-----------------+---------------------------+");
-        for (int i = 0; i < products.size(); i++) {
-            System.out.format("| %-4s | %-30s | %-12.2f | %-12.2f | %-12.2f | %-26s | %-25s |%n",
-                    products.get(i).getId(), products.get(i).getName(), products.get(i).getImportPrice(), products.get(i).getExportPrice(), products.get(i).getProfit(), categoryName[i], products.get(i).getDateTime().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+        System.out.printf("%s\n", line);
+    }
+
+    public void writeExcel() {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Product Data");
+
+        int rowIndex = 0;
+
+        // Ghi tiêu đề cột
+        Row header = sheet.createRow(rowIndex++);
+        header.createCell(0).setCellValue("ID");
+        header.createCell(1).setCellValue("Name");
+        header.createCell(2).setCellValue("Description");
+        header.createCell(3).setCellValue("Status");
+        header.createCell(4).setCellValue("Import Price ");
+        header.createCell(5).setCellValue("Export Price ");
+        header.createCell(6).setCellValue("Profit ");
+        header.createCell(7).setCellValue("Category ");
+        List<Product> products = readFile();
+        // Ghi dữ liệu từng dòng
+        for (Product product : products) {
+            Row row = sheet.createRow(rowIndex++);
+            row.createCell(0).setCellValue(String.valueOf(product.getId()));
+            row.createCell(1).setCellValue(product.getName());
+            row.createCell(2).setCellValue(product.getDescription() != null ? product.getDescription() : "");
+            row.createCell(3).setCellValue(product.getStatus());
+            row.createCell(4).setCellValue(product.getImportPrice());
+            row.createCell(5).setCellValue(product.getExportPrice());
+            row.createCell(6).setCellValue(product.getProfit());
+            row.createCell(7).setCellValue(product.getCategoryId());
         }
-        System.out.printf("+%4s+%30s+%12s+%12s+%12s+%15s+%27s+\n", "------", "--------------------------------", "--------------", "--------------", "--------------", "-----------------", "---------------------------");
->>>>>>> a44d4dc15c9beba2fa790c5653d1d4780c517444
+        // Ghi file ra ổ đĩa
+        try (FileOutputStream outputStream = new FileOutputStream(AppConstants.PATHFILE.concat("/ProductData.xlsx"))) {
+            workbook.write(outputStream);
+            workbook.close();
+            System.out.println("Excel file written successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
