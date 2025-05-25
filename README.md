@@ -3,7 +3,7 @@
 
 
 ## Apply knowledge
-> Java 8, 
+> Java 8
 - Object-oriented programing (OOP): ***encapsulation, abstraction, interface, Inheritance***
 - Conditions: **if else, switch case**
 - Loops: **for, foreach, whille, do while**
@@ -15,7 +15,8 @@
 - Streams: **sort, filter**
 - ANSI: **printf out with the color text**
 - Enum class: **store constant variable**
-- Date/Time API: **using date time api from java 8** 
+- Date/Time API: **using date time api from java 8**
+- Export data to Excel: **Apache POI**
 ## Screenshots
 ![Screenshot 2023-12-30 102344](https://github.com/giaptai/java-core-inventory-management/assets/102518847/7985b6a6-449c-4b90-9a28-4de586d69c1c)
 
